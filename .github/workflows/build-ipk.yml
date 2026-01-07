@@ -39,13 +39,14 @@ jobs:
         run: |
           mkdir -p /tmp/sdk/package/utils
           rsync -a --exclude=.git --exclude=.github "$GITHUB_WORKSPACE/" /tmp/sdk/package/utils/istore-captive/
-      - name: compile
+      - name: 编译（单线程全日志）
         run: |
           cd /tmp/sdk
           make defconfig
           echo "CONFIG_PACKAGE_istore-captive=m" >> .config
           make defconfig
-          make package/utils/istore-captive/compile -j$(nproc)
+          make package/utils/istore-captive/clean
+          make package/utils/istore-captive/compile -j1 V=s
       - name: collect
         run: |
           mkdir -p $GITHUB_WORKSPACE/artifacts
