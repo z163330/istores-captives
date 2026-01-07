@@ -19,12 +19,10 @@ define Package/istore-captive/description
   一机一码、扫码兑换、到期断网，零配置即用。
 endef
 
-# 安装：把整个 src 挂到 rootfs
+# 必须显式写出 install 段，否则不会生成目标
 define Package/istore-captive/install
 	$(INSTALL_DIR) $(1)
 	$(CP) ./src/* $(1)/
-	$(INSTALL_BIN) ./src/captive.sh $(1)/usr/bin/captive.sh
-	$(INSTALL_BIN) ./src/codegen.sh $(1)/usr/bin/codegen.sh
 endef
 
 $(eval $(call BuildPackage,istore-captive))
