@@ -18,7 +18,6 @@ function f.handle(self, state, data)
   end
 end
 
--- 已生成码列表
 local db = json.parse(fs.readfile("/etc/captive/codes.json") or "{}")
 local tbody = ""
 for c,d in pairs(db) do

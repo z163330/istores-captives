@@ -7,6 +7,10 @@ PKG_RELEASE:=1
 PKG_MAINTAINER:=yourname
 PKG_LICENSE:=GPL-3.0
 
+# 告诉系统「不用编译源码」
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
+Build/Compile:=true
+
 define Package/istore-captive
   SECTION:=utils
   CATEGORY:=Utilities
@@ -19,10 +23,11 @@ define Package/istore-captive/description
   一机一码、扫码兑换、到期断网，零配置即用。
 endef
 
-# 必须显式写出 install 段，否则不会生成目标
 define Package/istore-captive/install
 	$(INSTALL_DIR) $(1)
 	$(CP) ./src/* $(1)/
+	$(INSTALL_BIN) ./src/captive.sh $(1)/usr/bin/captive.sh
+	$(INSTALL_BIN) ./src/codegen.sh $(1)/usr/bin/codegen.sh
 endef
 
 $(eval $(call BuildPackage,istore-captive))
