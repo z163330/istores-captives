@@ -39,6 +39,12 @@ jobs:
         run: |
           mkdir -p /tmp/sdk/package/utils
           rsync -a --exclude=.git --exclude=.github "$GITHUB_WORKSPACE/" /tmp/sdk/package/utils/istore-captive/
+      - name: Debug - 检查 Makefile 是否真的存在
+        run: |
+          echo "===== 目录列表 ====="
+          ls -la /tmp/sdk/package/utils/istore-captive/
+          echo "===== Makefile 前 20 行 ====="
+          head -20 /tmp/sdk/package/utils/istore-captive/Makefile || echo "!!! 文件不存在"    
       - name: 编译（全日志实时输出）
         run: |
           cd /tmp/sdk
