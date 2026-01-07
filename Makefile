@@ -24,8 +24,7 @@ define Package/istore-captive/description
 endef
 
 define Package/istore-captive/install
-	$(INSTALL_DIR) $(1)
-	$(CP) ./src/* $(1)/
+	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) ./src/captive.sh $(1)/usr/bin/captive.sh
 	$(INSTALL_BIN) ./src/codegen.sh $(1)/usr/bin/codegen.sh
 endef
